@@ -20,6 +20,8 @@ final class MainViewController: UIViewController, UICollectionViewDataSource, UI
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = Colors.white
+        title = "Repo List"
         
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -29,10 +31,18 @@ final class MainViewController: UIViewController, UICollectionViewDataSource, UI
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = Colors.white
         collectionView.register(RepoCell.self, forCellWithReuseIdentifier: RepoCell.cellIdentifier)
         collectionView.register(LoadingCell.self, forCellWithReuseIdentifier: LoadingCell.cellIdentifier)
         view.addSubview(collectionView)
+        
+        collectionView.snp.makeConstraints { (make) in
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+            make.bottom.equalTo(view.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
+        }
+        
         self.collectionView = collectionView
         
         preloadData()
