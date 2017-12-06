@@ -1,0 +1,5 @@
+I have decided to leave the LaunchScreen storyboard to allow for automatic screen size detection instead of adding Default launch images.
+
+I have also decided towards the use of Helpers for Request and Cache as it keeps it simpler. A more complex logic would require to implement an instanced manager to handle and keep the state of the data as well as the cache.
+
+Finally, some tests have been added but more would be needed and it would need to be split into different files.
