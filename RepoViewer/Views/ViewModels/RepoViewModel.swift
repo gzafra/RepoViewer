@@ -24,6 +24,6 @@ struct RepoViewModel {
     }
     
     var backgroundColor: UIColor {
-        return repoDTO.fork ? .green : .white
+        return repoDTO.fork ? Colors.lightGreen : Colors.white
     }
 }
