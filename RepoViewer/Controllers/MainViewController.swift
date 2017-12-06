@@ -15,7 +15,9 @@ final class MainViewController: UIViewController, UICollectionViewDataSource, UI
     var repoList: [RepoViewModel] = []
     var collectionView: UICollectionView!
     var nextPage: Int = 1
+
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +39,7 @@ final class MainViewController: UIViewController, UICollectionViewDataSource, UI
         loadData(withPage: nextPage)
     }
     
+    // MARK: - Loading
     func preloadData() {
         // Preload data from cache, if any
         if let cachedData = CacheHelper.get() {
@@ -76,7 +79,7 @@ final class MainViewController: UIViewController, UICollectionViewDataSource, UI
         }, page: page)
     }
     
-    // MARK: UICollectionViewDatasource
+    // MARK: - UICollectionViewDatasource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return repoList.count + (isPaging ? 1 : 0)
@@ -100,11 +103,12 @@ final class MainViewController: UIViewController, UICollectionViewDataSource, UI
 // MARK: - Paging
 
 extension MainViewController: UIScrollViewDelegate {
+    fileprivate static let paginationThreshold: CGFloat = 300
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let distance = scrollView.contentSize.height - (targetContentOffset.pointee.y + scrollView.bounds.height)
-        let threshold: CGFloat = 300
-        if !isPaging && (distance < threshold) {
+        
+        if !isPaging && (distance < MainViewController.paginationThreshold) {
             isPaging = true
             loadData(withPage: nextPage)
             let lastIndexPath = IndexPath(row: repoList.count, section: 0)

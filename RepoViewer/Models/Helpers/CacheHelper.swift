@@ -12,8 +12,8 @@ import AwesomeCache
 /// Simple Cache utility class to save data in a static cache
 final class CacheHelper {
     fileprivate static let cacheName = "LocalCache"
-    static let cacheKey = "RepoList"
-    static let expirationSeconds: TimeInterval = 3600 * 24
+    fileprivate static let cacheKey = "RepoList"
+    fileprivate static let expirationSeconds: TimeInterval = 3600 * 24
     
     /// Returns the cached array of RepoDTO objects or nil if nothing is cached
     static func get() -> [RepoDTO]? {
@@ -23,7 +23,7 @@ final class CacheHelper {
         return decoded
     }
     
-    /// Caches the aray of RepoDTO objects
+    /// Caches the array of RepoDTO objects
     static func cache(_ value: [RepoDTO]) {
         guard let data = try? JSONEncoder().encode(value),
         let cache = try? Cache<NSData>(name: cacheName) else {
