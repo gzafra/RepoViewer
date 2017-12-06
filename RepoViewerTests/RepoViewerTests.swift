@@ -21,16 +21,31 @@ class RepoViewerTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testRepoDTO() {
+        guard let data = loadJson(withName: "RepoDTO") else {
+            XCTFail("Failed to load json file")
+            return
+        }
+        guard let repo = try? JSONDecoder().decode(RepoDTO.self, from: data) else {
+            XCTFail("Failed to decode JSON")
+            return
+        }
+        
+        XCTAssertEqual(repo.name, "Hello-World")
+        XCTAssertEqual(repo.ownerLogin, "octocat")
+        XCTAssertEqual(repo.description, "This your first repo!")
+        XCTAssertEqual(repo.fork, true)
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+}
+
+extension RepoViewerTests {
+    func loadJson(withName name: String) -> Data? {
+        guard let path = Bundle(for: type(of: self)).path(forResource: name, ofType: "json") else { return nil }
+        do {
+            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+            return data
+        } catch {
+            return nil
         }
     }
-    
 }
