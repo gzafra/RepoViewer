@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoadingCell: UICollectionViewCell {
+final class LoadingCell: UICollectionViewCell {
     static let cellIdentifier = "loadingCell"
     
     let loadingIndicator: UIActivityIndicatorView = {

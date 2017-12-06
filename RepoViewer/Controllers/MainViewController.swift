@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+final class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: - Properties
     var isPaging: Bool = false
@@ -33,12 +33,20 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
         view.addSubview(collectionView)
         self.collectionView = collectionView
         
+        preloadData()
         loadData(withPage: nextPage)
     }
     
+    func preloadData() {
+        // Preload data from cache, if any
+        if let cachedData = CacheHelper.get() {
+            print("\(cachedData.count) items preloaded from cache")
+            self.repoList = cachedData.map({ return RepoViewModel(repoDTO: $0) })
+            self.collectionView.reloadData()
+        }
+    }
+    
     func loadData(withPage page: Int) {
-        // TODO: Preload data from cache, if any
-        
         RequestHelper.fetchRepos(with: { result in
             switch result {
             case .success(let data):
@@ -46,7 +54,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
                 
                 let newData = data.map({ return RepoViewModel(repoDTO: $0) })
                 
-                // Increase page only if new data has returned
+                // Increase page only if new data has items
                 if data.count > 0 {
                     self.nextPage += 1
                 }
@@ -58,6 +66,8 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
                     self.repoList = newData
                 }
                 
+                // Save in cache
+                CacheHelper.cache(self.repoList.map({ return $0.repoDTO }))
                 
                 self.collectionView.reloadData()
             case .failure(let error):

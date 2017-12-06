@@ -9,7 +9,7 @@ target 'RepoViewer' do
   pod 'Alamofire'
   pod 'SnapKit', '~> 4.0.0'
   pod 'CodableAlamofire'
-
+  pod "AwesomeCache", "~> 5.0”
 
   target 'RepoViewerTests' do
     inherit! :search_paths

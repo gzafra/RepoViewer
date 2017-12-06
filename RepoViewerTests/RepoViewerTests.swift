@@ -22,15 +22,8 @@ class RepoViewerTests: XCTestCase {
         }
         return repo
     }
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
+
+    // MARK: - Models
     
     func testRepoDTO() {
         guard let repo = repoDTO else { return }
@@ -50,6 +43,8 @@ class RepoViewerTests: XCTestCase {
         XCTAssertEqual(repoViewModel.owner, "@\(repo.ownerLogin)")
         XCTAssertEqual(repoViewModel.backgroundColor, Colors.lightGreen)
     }
+    
+    // MARK: - Data layer
     
     func testEndpoints() {
         guard let repoListEndpoint = Endpoint.repoList.url else {
@@ -74,6 +69,8 @@ class RepoViewerTests: XCTestCase {
         }, waitFor: expectedDelay)
     }
     
+    // MARK: - Views
+    
     func testRepoCell() {
         guard let repo = repoDTO else { return }
         let repoViewModel = RepoViewModel(repoDTO: repo)
@@ -85,5 +82,18 @@ class RepoViewerTests: XCTestCase {
         XCTAssertEqual(repoCell.ownerLabel.text, repoViewModel.owner)
         XCTAssertEqual(repoCell.descriptionLabel.text, repoViewModel.description)
         XCTAssertEqual(repoCell.backgroundColor, repoViewModel.backgroundColor)
+    }
+    
+    // MARK: - Cache
+    
+    func testCache() {
+        CacheHelper.purge()
+        guard let repo = repoDTO else { return }
+        CacheHelper.cache([repo])
+        
+        let cachedData = CacheHelper.get()
+        XCTAssertNotNil(cachedData)
+        XCTAssert(cachedData!.count == 1)
+        CacheHelper.purge()
     }
 }

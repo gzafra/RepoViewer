@@ -13,7 +13,7 @@ private let cellInsets = UIEdgeInsets(top: 4, left: 6, bottom: 4, right: 6)
 private let verticalSpacing: CGFloat = 4
 private let headerHeight: CGFloat = 25
 
-class RepoCell: UICollectionViewCell {
+final class RepoCell: UICollectionViewCell {
     static let cellIdentifier = "repoCell"
     
     // MARK: - Outlets

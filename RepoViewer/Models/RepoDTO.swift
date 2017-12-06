@@ -36,3 +36,16 @@ extension RepoDTO: Decodable {
         ownerLogin = try ownerContainer.decode(String.self, forKey: .login)
     }
 }
+
+extension RepoDTO: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(description, forKey: .description)
+        try container.encode(fork, forKey: .fork)
+        
+        var ownerContrainer = container.nestedContainer(keyedBy: OwnerKeys.self, forKey: .owner)
+        try ownerContrainer.encode(ownerLogin, forKey: .login)
+        
+    }
+}

@@ -25,6 +25,7 @@
 		B6CC49371FD7FD0D0047CC22 /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CC49361FD7FD0D0047CC22 /* RepoCell.swift */; };
 		B6CC49391FD7FD220047CC22 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CC49381FD7FD220047CC22 /* LoadingCell.swift */; };
 		B6CC493B1FD7FDB00047CC22 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CC493A1FD7FDB00047CC22 /* Colors.swift */; };
+		B6CC493D1FD807550047CC22 /* CacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CC493C1FD807550047CC22 /* CacheHelper.swift */; };
 		BDF5583D6F37A0E5660C43A9 /* Pods_RepoViewerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 352DE1F456B1BDA7BF2264EC /* Pods_RepoViewerUITests.framework */; };
 		C3BC8685BE24852C1AD4ECD8 /* Pods_RepoViewerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C988845F6623980203F6964 /* Pods_RepoViewerTests.framework */; };
 /* End PBXBuildFile section */
@@ -77,6 +78,7 @@
 		B6CC49361FD7FD0D0047CC22 /* RepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
 		B6CC49381FD7FD220047CC22 /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		B6CC493A1FD7FDB00047CC22 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		B6CC493C1FD807550047CC22 /* CacheHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheHelper.swift; sourceTree = "<group>"; };
 		CFAA95426228D2E5E1FF9804 /* Pods-RepoViewerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RepoViewerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RepoViewerTests/Pods-RepoViewerTests.release.xcconfig"; sourceTree = "<group>"; };
 		D09609449D4156C9C4A5B6E3 /* Pods-RepoViewerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RepoViewerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RepoViewerTests/Pods-RepoViewerTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				B6CC49311FD7EFC50047CC22 /* RequestHelper.swift */,
+				B6CC493C1FD807550047CC22 /* CacheHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -457,12 +460,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RepoViewer/Pods-RepoViewer-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AwesomeCache/AwesomeCache.framework",
 				"${BUILT_PRODUCTS_DIR}/CodableAlamofire/CodableAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AwesomeCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CodableAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
@@ -560,6 +565,7 @@
 				B6CC493B1FD7FDB00047CC22 /* Colors.swift in Sources */,
 				B6CC49281FD7EABE0047CC22 /* Errors.swift in Sources */,
 				B6CC48F31FD7E6BA0047CC22 /* MainViewController.swift in Sources */,
+				B6CC493D1FD807550047CC22 /* CacheHelper.swift in Sources */,
 				B6CC49321FD7EFC50047CC22 /* RequestHelper.swift in Sources */,
 				B6CC49391FD7FD220047CC22 /* LoadingCell.swift in Sources */,
 				B6CC49231FD7EA3C0047CC22 /* RepoDTO.swift in Sources */,
