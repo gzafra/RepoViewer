@@ -10,7 +10,7 @@ import Foundation
 
 struct RepoDTO {
     let name: String
-    let description: String
+    let description: String?
     let ownerLogin: String
     let fork: Bool
     
@@ -30,7 +30,7 @@ extension RepoDTO: Decodable {
     init(from decoder: Decoder) throws {
         let rootContainer = try decoder.container(keyedBy: CodingKeys.self)
         name = try rootContainer.decode(String.self, forKey: .name)
-        description = try rootContainer.decode(String.self, forKey: .description)
+        description = try? rootContainer.decode(String.self, forKey: .description)
         fork = try rootContainer.decode(Bool.self, forKey: .fork)
         let ownerContainer = try rootContainer.nestedContainer(keyedBy: OwnerKeys.self, forKey: .owner)
         ownerLogin = try ownerContainer.decode(String.self, forKey: .login)

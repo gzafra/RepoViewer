@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BaseUrl</key>
+	<string>https://api.github.com/</string>
+	<key>AccessToken</key>
+	<string>837fa154ace715dec21e3e866f2bc61b87ec45ef</string>
+	<key>EndPoints</key>
+	<dict>
+		<key>repoList</key>
+		<string>users/xing/repos</string>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

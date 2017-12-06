@@ -10,6 +10,7 @@ import XCTest
 @testable import RepoViewer
 
 class RepoViewerTests: XCTestCase {
+    private let expectedDelay: TimeInterval = 5.0 // Expected delay to load images.
     
     override func setUp() {
         super.setUp()
@@ -36,16 +37,28 @@ class RepoViewerTests: XCTestCase {
         XCTAssertEqual(repo.description, "This your first repo!")
         XCTAssertEqual(repo.fork, true)
     }
-}
-
-extension RepoViewerTests {
-    func loadJson(withName name: String) -> Data? {
-        guard let path = Bundle(for: type(of: self)).path(forResource: name, ofType: "json") else { return nil }
-        do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-            return data
-        } catch {
-            return nil
+    
+    func testEndpoints() {
+        guard let repoListEndpoint = Endpoint.repoList.url else {
+            XCTFail("Failed to load URL")
+            return
         }
+        XCTAssertEqual(repoListEndpoint, "https://api.github.com/users/xing/repos")
+    }
+    
+    func testRepoAPISuccess() {
+        testExpectation(description: "Querying GitHub API", actionBlock: { (expectation) in
+            RequestHelper.fetchRepos(with: { result in
+                switch result {
+                case .success(let data):
+                    XCTAssert(data.count > 0)
+                case .failure(_ ):
+                    XCTFail("Request failed when it should succeed")
+                    
+                }
+                expectation.fulfill()
+            })
+        }, waitFor: expectedDelay)
+        
     }
 }

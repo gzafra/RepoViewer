@@ -16,7 +16,7 @@ struct RepoViewModel {
     }
     
     var description: String {
-        return repoDTO.description
+        return repoDTO.description ?? ""
     }
     
     var owner: String {
