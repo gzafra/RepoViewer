@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 final class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -52,6 +53,9 @@ final class MainViewController: UIViewController, UICollectionViewDataSource, UI
     // MARK: - Loading
     func preloadData() {
         // Preload data from cache, if any
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        try? appDelegate.fetchedhResultController.performFetch()
+        
         if let cachedData = CacheHelper.get() {
             print("\(cachedData.count) items preloaded from cache")
             self.repoList = cachedData.map({ return RepoViewModel(repoDTO: $0) })
@@ -64,6 +68,17 @@ final class MainViewController: UIViewController, UICollectionViewDataSource, UI
             switch result {
             case .success(let data):
                 self.isPaging = false
+                
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+                
+                let managedContext = appDelegate.persistentContainer.viewContext
+                data.forEach({ model in model.createManagedObject(forContext: managedContext)})
+                
+                do {
+                    try managedContext.save()
+                } catch let error as NSError {
+                    print("Could not save. \(error), \(error.userInfo)")
+                }
                 
                 let newData = data.map({ return RepoViewModel(repoDTO: $0) })
                 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 struct RepoDTO {
     let name: String
@@ -47,5 +48,24 @@ extension RepoDTO: Encodable {
         var ownerContrainer = container.nestedContainer(keyedBy: OwnerKeys.self, forKey: .owner)
         try ownerContrainer.encode(ownerLogin, forKey: .login)
         
+    }
+}
+
+extension RepoDTO {
+    enum CoreDataKeys: String {
+        case name
+        case repoDescription
+        case owner
+        case fork
+    }
+    
+    @discardableResult
+    func createManagedObject(forContext context: NSManagedObjectContext) -> NSManagedObject? {
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "Repo", into: context)
+        entity.setValue(name, forKey: CoreDataKeys.name.rawValue)
+        entity.setValue(description, forKey: CoreDataKeys.repoDescription.rawValue)
+        entity.setValue(ownerLogin, forKey: CoreDataKeys.owner.rawValue)
+        entity.setValue(fork, forKey: CoreDataKeys.fork.rawValue)
+        return entity
     }
 }

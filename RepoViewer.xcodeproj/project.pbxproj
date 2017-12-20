@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7F9B968FD9459A1D8ACE0CD6 /* Pods_RepoViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F68B640D6859BF4A218BCCA /* Pods_RepoViewer.framework */; };
+		B63A08B31FEAAD9D0093DABC /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B63A08B01FEAA3190093DABC /* Model.xcdatamodeld */; };
 		B6CC48F11FD7E6BA0047CC22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CC48F01FD7E6BA0047CC22 /* AppDelegate.swift */; };
 		B6CC48F31FD7E6BA0047CC22 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6CC48F21FD7E6BA0047CC22 /* MainViewController.swift */; };
 		B6CC48F81FD7E6BA0047CC22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6CC48F71FD7E6BA0047CC22 /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		4C988845F6623980203F6964 /* Pods_RepoViewerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RepoViewerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EEAF80FB615D5BBFF8B9CC3 /* Pods-RepoViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RepoViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-RepoViewer/Pods-RepoViewer.release.xcconfig"; sourceTree = "<group>"; };
 		B04214EC5C2E5F14DB69E798 /* Pods-RepoViewerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RepoViewerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RepoViewerUITests/Pods-RepoViewerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B63A08B11FEAA3190093DABC /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		B6CC48ED1FD7E6BA0047CC22 /* RepoViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RepoViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CC48F01FD7E6BA0047CC22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6CC48F21FD7E6BA0047CC22 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B63A08AF1FEAA2E30093DABC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B63A08B01FEAA3190093DABC /* Model.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		B6CC48E41FD7E6B90047CC22 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +159,7 @@
 		B6CC48EF1FD7E6BA0047CC22 /* RepoViewer */ = {
 			isa = PBXGroup;
 			children = (
+				B63A08AF1FEAA2E30093DABC /* CoreData */,
 				B6CC49261FD7EAAA0047CC22 /* Util */,
 				B6CC49201FD7E9690047CC22 /* Views */,
 				B6CC491F1FD7E95C0047CC22 /* Models */,
@@ -572,6 +583,7 @@
 				B6CC49371FD7FD0D0047CC22 /* RepoCell.swift in Sources */,
 				B6CC492F1FD7EF9F0047CC22 /* Enums.swift in Sources */,
 				B6CC48F11FD7E6BA0047CC22 /* AppDelegate.swift in Sources */,
+				B63A08B31FEAAD9D0093DABC /* Model.xcdatamodeld in Sources */,
 				B6CC492D1FD7EF6B0047CC22 /* ConfigValues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -863,6 +875,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B63A08B01FEAA3190093DABC /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B63A08B11FEAA3190093DABC /* Model.xcdatamodel */,
+			);
+			currentVersion = B63A08B11FEAA3190093DABC /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B6CC48E51FD7E6B90047CC22 /* Project object */;
 }
